@@ -95,8 +95,6 @@ const Layout = () => {
 											className={classes.imagePoke}
 										/>
 										<Typography align='center' variant='h4'>{pokemon.name}</Typography>
-										<Typography align='center' variant='h4'>{pokemon.name}</Typography>
-										<Typography align='center' variant='h4'>{pokemon.name}</Typography>
 									</CardContent>
 								</CardActionArea>
 							</Card>
