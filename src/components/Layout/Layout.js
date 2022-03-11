@@ -14,6 +14,7 @@ const Layout = () => {
 	const [searchPokemon, setSearchPokemon] = useState('')
 	const [pokemon, setPokemon] = useState({})
 	const [isSearch, setIsSearch] = useState(false)
+	//const [lookabilityes, setAbilities] = useState('')
 
 	const loadData = () => {
 		axios.get('https://pokeapi.co/api/v2/pokemon?limit=150')
@@ -42,6 +43,13 @@ const Layout = () => {
 		}
 	}
 
+	// const onAbility = async () => {
+	// 	axios.get('https://pokeapi.co/api/v2/ability?limit=15')
+	// 		.then(resp => {
+				
+	// 			consle.log(resp.data)
+	// 		})
+	// }
 
 	useEffect(loadData, [])
 
@@ -91,7 +99,7 @@ const Layout = () => {
 									<CardContent>
 										<CardMedia
 											//checar la llamada a la api , no encuentra la imagen 
-											//image={pokemon.sprites.back_default}
+											//image={pokemon.sprites.front_default}
 											className={classes.imagePoke}
 										/>
 										<Typography align='center' variant='h4'>{pokemon.name}</Typography>
@@ -99,7 +107,6 @@ const Layout = () => {
 								</CardActionArea>
 							</Card>
 						</Grid>
-						
 						:
 						pokemonList.map((poke, index) => (
 							<Grid key={index} item xs={12} sm={4}>
