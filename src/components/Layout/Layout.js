@@ -14,10 +14,10 @@ const Layout = () => {
 	const [searchPokemon, setSearchPokemon] = useState('')
 	const [pokemon, setPokemon] = useState({})
 	const [isSearch, setIsSearch] = useState(false)
-	//const [lookabilityes, setAbilities] = useState('')
+	const [lookabilityes, setlookabilityes] = useState([])
 
 	const loadData = () => {
-		axios.get('https://pokeapi.co/api/v2/pokemon?limit=150')
+		axios.get('https://pokeapi.co/api/v2/pokemon?limit=15')
 			.then(resp => {
 				for (let i = 0; i < resp.data.results.length; i++) {
 					axios.get(resp.data.results[i].url)
@@ -37,19 +37,19 @@ const Layout = () => {
 		} else {
 			await axios.get(`https://pokeapi.co/api/v2/pokemon/${searchPokemon}`)
 				.then(resp => {
-					setIsSearch(true)
+					
 					setPokemon(resp.data)
 				})
 		}
 	}
 
-	// const onAbility = async () => {
-	// 	axios.get('https://pokeapi.co/api/v2/ability?limit=15')
-	// 		.then(resp => {
-				
-	// 			consle.log(resp.data)
-	// 		})
-	// }
+	 const onAbility = async () => {
+	 	axios.get('https://pokeapi.co/api/v2/ability?limit=15')
+	 		.then(resp => {
+				setlookabilityes(resp.data)
+	 			console.log(resp.data)
+	 		})
+	 }
 
 	useEffect(loadData, [])
 
@@ -118,14 +118,24 @@ const Layout = () => {
 												className={classes.imagePoke}
 											/>
 											<Typography align='center' variant='h4'>{poke.name}</Typography>
-											
+											<Typography align='center' variant='h4'>{lookabilityes.name}</Typography>
+											<IconButton className={classes.iconButton} onClick={onAbility} 
+											value={lookabilityes}
+											onChange={e => setlookabilityes(e.target.value)}>
+											 <MenuIcon  />
+											</IconButton>
 										</CardContent>
 									</CardActionArea>
 								</Card>
 							</Grid>
 						))
+						
+						
 					}
+					
 				</Grid>
+
+			
 			</Container>
 			<footer className={classes.footer}>
 				<Container maxWidth='sm'>
