@@ -37,7 +37,7 @@ const Layout = () => {
 		} else {
 			await axios.get(`https://pokeapi.co/api/v2/pokemon/${searchPokemon}`)
 				.then(resp => {
-					
+					setIsSearch(true)
 					setPokemon(resp.data)
 				})
 		}
@@ -99,7 +99,7 @@ const Layout = () => {
 									<CardContent>
 										<CardMedia
 											//checar la llamada a la api , no encuentra la imagen 
-											//image={pokemon.sprites.front_default}
+											image={pokemon.sprites.front_default}
 											className={classes.imagePoke}
 										/>
 										<Typography align='center' variant='h4'>{pokemon.name}</Typography>
@@ -118,7 +118,6 @@ const Layout = () => {
 												className={classes.imagePoke}
 											/>
 											<Typography align='center' variant='h4'>{poke.name}</Typography>
-											<Typography align='center' variant='h4'>{lookabilityes.name}</Typography>
 											<IconButton className={classes.iconButton} onClick={onAbility} 
 											value={lookabilityes}
 											onChange={e => setlookabilityes(e.target.value)}>
